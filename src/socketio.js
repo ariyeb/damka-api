@@ -70,6 +70,12 @@ const initiateSocketio = (server) => {
             }
         });
 
+        socket.on('tie', (opponentId) => {
+            if (opponentId) {
+                socket.broadcast.to(opponentId).emit('tie');
+            }
+        });
+
         socket.on('disconnection', () => {
             const leavingPlayer = players.removePlayer(socket.id);
 
