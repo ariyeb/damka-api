@@ -55,6 +55,14 @@ const initiateSocketio = (server) => {
             socket.broadcast.to(moveDoneData.toPlayer.id).emit('getMoveDone', moveDoneData);
         });
 
+        socket.on('ratingUpdate', (NewRating) => {
+            players.updateRating(socket.id, NewRating);
+
+            io.emit('playersList', {
+                players: players.getPlayersNotPlayingNowList()
+            });
+        });
+
         socket.on('playerLeftTheGame', (opponent) => {
             if (opponent !== null) {
                 console.log('player left game');

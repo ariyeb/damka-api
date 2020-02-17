@@ -61,6 +61,20 @@ const getPlyersPlaying = () => {
     return playersPlayingNow;
 }
 
+const updateRating = (id, newRating) => {
+    let player = playersPlayingNow.find((player) => player.id === id);
+    if (player) {
+        player.rating = newRating;
+        return;
+    }
+
+    player = playersNotPlayingNow.find((player) => player.id === id);
+    if (player) {
+        player.rating = newRating;
+        return;
+    }
+}
+
 module.exports = {
     addPlayer,
     removePlayer,
@@ -68,5 +82,6 @@ module.exports = {
     getPlayersNotPlayingNowList,
     transferPlayerTo_NOT_PlayingNowList,
     transferPlayerToPlayingNowList,
-    getPlyersPlaying
+    getPlyersPlaying,
+    updateRating
 }
