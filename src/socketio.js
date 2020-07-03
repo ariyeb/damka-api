@@ -87,6 +87,7 @@ const initiateSocketio = (server) => {
             }
         });
 
+        const func1 = () => { }
         socket.on('disconnect', () => {
             const leavingPlayer = players.removePlayer(socket.id);
 
